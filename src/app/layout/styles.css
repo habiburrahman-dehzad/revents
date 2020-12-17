@@ -147,3 +147,7 @@ body {
 .ui.inverted.attached.segment {
     border: none;
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
