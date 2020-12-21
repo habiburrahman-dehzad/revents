@@ -3,7 +3,7 @@ import { Tab } from 'semantic-ui-react';
 import ProfileActivities from './ProfileActivities';
 import AboutTab from './AboutTab';
 import ProfileFollowings from './ProfileFollowings';
-import ProfilePhotos from './ProfilePhotos';
+import PhotosTab from './PhotosTab';
 
 const ProfileContent = ({ profile, isCurrentUser }) => {
   const panes = [
@@ -13,7 +13,12 @@ const ProfileContent = ({ profile, isCurrentUser }) => {
         <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
-    { menuItem: 'Photos', render: () => <ProfilePhotos /> },
+    {
+      menuItem: 'Photos',
+      render: () => (
+        <PhotosTab profile={profile} isCurrentUser={isCurrentUser} />
+      ),
+    },
     {
       menuItem: 'Activities',
       render: () => <ProfileActivities />,
