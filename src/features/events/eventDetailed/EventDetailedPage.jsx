@@ -14,11 +14,15 @@ import { Redirect } from 'react-router-dom';
 const EventDetailedPage = ({ match }) => {
   const dispatch = useDispatch();
 
+  const {currentUser} = useSelector(state => state.auth);
+
   const event = useSelector((state) =>
     state.event.events.find((evt) => evt.id === match.params.id)
   );
 
   const { loading, error } = useSelector((state) => state.async);
+  const isHost = event?.hostUid === currentUser.uid;
+  const isGoing = event?.attendees.some(a => a.id === currentUser.uid);
 
   useFirestoreDoc({
     query: () => listenToEventFromFirestore(match.params.id),
@@ -37,12 +41,12 @@ const EventDetailedPage = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={10}>
-        <EventDetailedHeader event={event} />
+        <EventDetailedHeader event={event} isHost={isHost} isGoing={isGoing} />
         <EventDetailedInfo event={event} />
-        <EventDetailedChat event={event} />
+        <EventDetailedChat />
       </Grid.Column>
       <Grid.Column width={6}>
-        <EventDetailedSidebar attendees={event.attendees} />
+        <EventDetailedSidebar attendees={event?.attendees} hostUid={event.hostUid} />
       </Grid.Column>
     </Grid>
   );

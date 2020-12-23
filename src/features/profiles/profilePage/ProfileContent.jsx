@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import ProfileActivities from './ProfileActivities';
+import EventsTab from './EventsTab';
 import AboutTab from './AboutTab';
 import ProfileFollowings from './ProfileFollowings';
 import PhotosTab from './PhotosTab';
@@ -20,8 +20,8 @@ const ProfileContent = ({ profile, isCurrentUser }) => {
       ),
     },
     {
-      menuItem: 'Activities',
-      render: () => <ProfileActivities />,
+      menuItem: 'Events',
+      render: () => <EventsTab profile={profile} />,
     },
     { menuItem: 'Followers', render: () => <ProfileFollowings /> },
     { menuItem: 'Following', render: () => <ProfileFollowings /> },
