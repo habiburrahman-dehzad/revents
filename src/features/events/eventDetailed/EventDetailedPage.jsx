@@ -25,6 +25,7 @@ const EventDetailedPage = ({ match }) => {
   const isGoing = event?.attendees.some(a => a.id === currentUser.uid);
 
   useFirestoreDoc({
+    shouldExecute: !!match.params.id,
     query: () => listenToEventFromFirestore(match.params.id),
     data: (event) => dispatch(listenToEvents([event])),
     deps: [match.params.id, dispatch],
@@ -43,7 +44,7 @@ const EventDetailedPage = ({ match }) => {
       <Grid.Column width={10}>
         <EventDetailedHeader event={event} isHost={isHost} isGoing={isGoing} />
         <EventDetailedInfo event={event} />
-        <EventDetailedChat />
+        <EventDetailedChat eventId={event.id}/>
       </Grid.Column>
       <Grid.Column width={6}>
         <EventDetailedSidebar attendees={event?.attendees} hostUid={event.hostUid} />
