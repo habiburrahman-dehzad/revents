@@ -15,12 +15,11 @@ const EventDetailedPage = ({ match }) => {
   const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.auth);
-
   const {selectedEvent} = useSelector((state) => state.event);
-
   const { loading, error } = useSelector((state) => state.async);
-  const isHost = selectedEvent?.hostUid === currentUser.uid;
-  const isGoing = selectedEvent?.attendees.some((a) => a.id === currentUser.uid);
+  
+  const isHost = selectedEvent?.hostUid === currentUser?.uid;
+  const isGoing = selectedEvent?.attendees.some((a) => a.id === currentUser?.uid);
 
   useFirestoreDoc({
     shouldExecute: !!match.params.id,

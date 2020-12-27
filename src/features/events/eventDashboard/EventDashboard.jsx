@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Grid, Loader } from 'semantic-ui-react';
+import { Grid, Loader } from 'semantic-ui-react';
 import { clearEvents, fetchEvents } from '../eventActions';
 import EventFilters from './EventFilters';
 import EventList from './EventList';
